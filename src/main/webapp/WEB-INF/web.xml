@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+	<servlet>
+		<servlet-name>sendMsgToGroup</servlet-name>
+		<servlet-class>prog.kiev.ua.controller.SendToGroupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sendMsgToGroup</servlet-name>
+		<url-pattern>/sendtogroup</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getMsg</servlet-name>
+		<servlet-class>prog.kiev.ua.controller.GetMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getMsg</servlet-name>
+		<url-pattern>/get</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>createGroup</servlet-name>
+		<servlet-class>prog.kiev.ua.controller.CreateGroupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createGroup</servlet-name>
+		<url-pattern>/creategroup</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getUsers</servlet-name>
+		<servlet-class>prog.kiev.ua.controller.GetUsersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getUsers</servlet-name>
+		<url-pattern>/getusers</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getOnUsers</servlet-name>
+		<servlet-class>prog.kiev.ua.controller.GetOnUsersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getOnUsers</servlet-name>
+		<url-pattern>/getonlineusers</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>sendMsg</servlet-name>
+		<servlet-class>prog.kiev.ua.controller.SendMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sendMsg</servlet-name>
+		<url-pattern>/send</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>prog.kiev.ua.controller.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>authFilter</filter-name>
+		<filter-class>prog.kiev.ua.filter.AuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>authFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
