@@ -3,7 +3,6 @@ package prog.kiev.ua.controller;
 
 import prog.kiev.ua.dao.UserDao;
 import prog.kiev.ua.dao.impl.UserStorageDao;
-import prog.kiev.ua.session.SessionStorage;
 import prog.kiev.ua.entity.User;
 import prog.kiev.ua.util.Json;
 
@@ -13,8 +12,8 @@ import java.io.*;
 
 
 public class LoginServlet extends HttpServlet {
+    public static final String ATTRIBUTE_USER_ID = "id";
     private UserDao userStorage = UserStorageDao.getInstance();
-    private SessionStorage sessionList = SessionStorage.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         if (user == null) {
             User newUser = new User(userFromReq.getLogin(), userFromReq.getPassword());
             userStorage.addUser(newUser.getId(), newUser);
-            sessionList.add(session.getId(), newUser.getId());
+            session.setAttribute(ATTRIBUTE_USER_ID, newUser.getId());
             return;
         }
 
@@ -43,7 +42,8 @@ public class LoginServlet extends HttpServlet {
             resp.setStatus(401); //Unauthorized
             return;
         }
-        sessionList.add(session.getId(), user.getId());
+        session.setAttribute(ATTRIBUTE_USER_ID, user.getId());
+
     }
 
     private static boolean userCorrect(User user) {
